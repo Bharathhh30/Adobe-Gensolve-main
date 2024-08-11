@@ -1,0 +1,7 @@
+Flask
+opencv-python
+numpy
+matplotlib
+scikit-image
+werkzeug
+pyngrok

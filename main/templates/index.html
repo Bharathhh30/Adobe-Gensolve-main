@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gensolve</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            /* background-color: #f0f2f5; */
+        }
+
+        #hover {
+            position: absolute;
+            top: 20px;
+            text-align: center;
+            width: 100%;
+            font-size: 5vh;
+            transition: color 0.5s, transform 0.5s;
+        }
+
+        #hover img {
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+        #input {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        #input label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        #file-info {
+            display: none;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        #file-name {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .buttons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .buttons button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .buttons button:hover {
+            background-color: #0056b3;
+        }
+
+        .buttons .delete-btn {
+            background-color: #dc3545;
+        }
+
+        .buttons .delete-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="hover">
+        Namaste Adobe Walo 
+        <img src="https://i.pinimg.com/736x/56/3a/a2/563aa2189ef92dc242a7db5b91078804.jpg" alt="Adobe logo" height="100vh" width="100vh">
+    </div>
+
+    <div id="input">
+        <form id="upload-form" action="/outputkeliye" method="post" enctype="multipart/form-data">
+            <label for="input-image">Drop the image here</label>
+            <input type="file" id="input-image" name="input-image" accept="image/*" required>
+            <div id="file-info">
+                <span id="file-name"></span>
+                <div class="buttons">
+                    <button type="button" id="delete-btn" class="delete-btn">Delete</button>
+                    <button type="button" id="select-btn">Select Another</button>
+                    <button type="submit" id="submit-btn" style="color: cornsilk;">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const hoverDiv = document.getElementById('hover');
+        const originalText = 'Namaste Adobe Walo';
+        const originalImageSrc = 'https://i.pinimg.com/736x/56/3a/a2/563aa2189ef92dc242a7db5b91078804.jpg';
+        const newText = 'Apko Bhi Namaste GFG Walo';
+        const newImageSrc = 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/GeeksforGeeks.svg/1200px-GeeksforGeeks.svg.png';
+
+        hoverDiv.addEventListener('mouseover', function() {
+            hoverDiv.style.color = 'green';
+            hoverDiv.innerHTML = `${newText} <img src="${newImageSrc}" alt="GFG logo" height="100vh" width="100vh">`;
+            hoverDiv.style.transform = 'scale(1.05)';
+        });
+
+        hoverDiv.addEventListener('mouseout', function() {
+            hoverDiv.style.color = 'black';
+            hoverDiv.innerHTML = `${originalText} <img src="${originalImageSrc}" alt="Adobe logo" height="100vh" width="100vh">`;
+            hoverDiv.style.transform = 'scale(1)';
+        });
+
+        const inputImage = document.getElementById('input-image');
+        const fileInfo = document.getElementById('file-info');
+        const fileName = document.getElementById('file-name');
+        const deleteBtn = document.getElementById('delete-btn');
+        const selectBtn = document.getElementById('select-btn');
+
+        inputImage.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                fileName.textContent = `Selected file: ${file.name}`;
+                fileInfo.style.display = 'block';
+            }
+        });
+
+        deleteBtn.addEventListener('click', function() {
+            inputImage.value = '';
+            fileInfo.style.display = 'none';
+        });
+
+        selectBtn.addEventListener('click', function() {
+            inputImage.click();
+        });
+    </script>
+</body>
+</html>

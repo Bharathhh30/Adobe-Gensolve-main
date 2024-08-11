@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output Results</title>
+    <style>
+        a{
+            text-decoration: none;
+            color: blue;
+        }
+        #img1{
+            margin-left: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <h1>Output Results</h1>
+    <img src="{{ img_url }}" alt="Generated Plot" style="width: 80%;">
+    <br><br>
+    <a href="{{ url_for('home') }}">Go Back</a>
+
+    <img id="img1" src="https://c.tenor.com/xfRWhvFymhoAAAAC/munna-bhai-munna-bhai-mbbs.gif" height="250px" width="250px" alt="gif">
+</body>
+</html>
